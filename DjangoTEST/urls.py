@@ -36,7 +36,9 @@ urlpatterns = [
     re_path(r'^birthday/(?P<year>\d{4})/(?P<mon>\d{2})/(?P<day>\d{2})$',views.bir_view),
     re_path(r'^birthday/(?P<mon>\d{2})/(?P<day>\d{2})/(?P<year>\d{4})$',views.bir_view),
 
-    path('test_get_post',views.test_get_post)
+    path('test_get_post',views.test_get_post),
+    path('test_html', views.test_html),
+    path('test_html_param',views.test_html_param)
 
 
 ]

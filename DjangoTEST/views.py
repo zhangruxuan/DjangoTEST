@@ -1,5 +1,6 @@
 from django.http import HttpResponse,HttpResponseRedirect
 from django.urls import path
+from django.template import loader
 POST_FORM = '''
 <form method='POST' action='/test_get_post'>
 	用户名：<input type='text' name='uname'>
@@ -65,3 +66,32 @@ def test_get_post(request):
 	else:
 		pass
 	return HttpResponse('--TEST GET POST IS OK--')
+
+def test_html(request):
+	# #1.通过loader加载模板
+	# t = loader.get_template('test_html.html')
+	# #2.将loader转成HTML字符串（）
+	# html = t.render()
+	# #3.用响应对象将转换的字符串内容返回给浏览器
+	# return HttpResponse(html)
+	from django.shortcuts import  render
+	dic = {'username':'zhangruxuan','age':'18'}
+	return render(request, 'test_html.html',dic)
+
+def say_hi():
+	return 'hhhhhhh'
+class Dog:
+	def say(self):
+		return 'wangwangwang'
+def test_html_param(request):
+	from django.shortcuts import render
+	dic = {}
+	dic['int'] = 88
+	dic['str'] = 'zhangruxuan'
+	dic['lst'] = ['Tom', 'Jack', 'Lily']
+	dic['dict'] = {'a':9, 'b':8}
+	dic['func'] = say_hi
+	dic['class_obj'] = Dog()
+	return render(request, 'test_html_param.html', dic)
+
+def test_if_for(request):
